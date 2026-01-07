@@ -1,8 +1,5 @@
-
-import { DisplayRoute } from '../features/display/routes/DisplayRoute';
+import { DisplayRoute } from "../features/display/routes/DisplayRoute";
 
 export default function AppNavigator() {
-  return (
-      <DisplayRoute />
-  );
+  return <DisplayRoute />;
 }
