@@ -1,7 +1,8 @@
 // features/display/pages/DisplayPage.tsx
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-import { DisplayCard } from '../components/DisplayCard';
-import { useDisplayData } from '../hooks/useDisplayData';
+import { FlatList, StyleSheet, Text, View } from "react-native";
+
+import { DisplayCard } from "../components/DisplayCard";
+import { useDisplayData } from "../hooks/useDisplayData";
 
 const DisplayPage = () => {
   const { data, loading } = useDisplayData();
@@ -32,11 +33,11 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 12,
   },
   loading: {
     marginTop: 40,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });

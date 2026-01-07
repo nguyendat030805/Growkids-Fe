@@ -1,8 +1,10 @@
 // features/display/hooks/useDisplayData.ts
-import { Logger } from '@/src/core/utils/Logger';
-import { useEffect, useState } from 'react';
-import { DisplayService } from '../services/DisplayService';
-import { DisplayItem } from '../types/DisplayType';
+import { useEffect, useState } from "react";
+
+import { Logger } from "@/src/core/utils/Logger";
+
+import { DisplayService } from "../services/DisplayService";
+import { DisplayItem } from "../types/DisplayType";
 
 export const useDisplayData = () => {
   const [data, setData] = useState<DisplayItem[]>([]);
@@ -15,7 +17,7 @@ export const useDisplayData = () => {
         setData(result);
       } finally {
         setLoading(false);
-        Logger.log('Đã tải xong dữ liệu vào Hook');
+        Logger.log("Đã tải xong dữ liệu vào Hook");
       }
     };
 
