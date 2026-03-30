@@ -41,7 +41,7 @@ export default function RecordingScreen() {
         }
       });
     } catch (error) {
-      console.error("Lỗi phát âm thanh:", error);
+      console.error("Error playing audio:", error);
     }
   };
 
@@ -61,15 +61,12 @@ export default function RecordingScreen() {
       } catch (e) {
         if (axios.isAxiosError(e)) {
           if (e.response?.status === 401) {
-            Alert.alert(
-              "Thông báo",
-              "Phiên đăng nhập hết hạn, vui lòng đăng nhập lại.",
-            );
+            Alert.alert("Session expired", "Please log in again.");
           } else {
-            Alert.alert("Lỗi kết nối", "Vui lòng kiểm tra Server!");
+            Alert.alert("Connection error", "Please check the server!");
           }
         } else {
-          console.error("Lỗi không xác định:", e);
+          console.error("Unknown error:", e);
         }
       } finally {
         setLoading(false);
@@ -85,24 +82,27 @@ export default function RecordingScreen() {
       className="flex-1 bg-slate-100"
       contentContainerStyle={{ padding: 20, paddingTop: 16 }}
     >
-      <View className="flex-row items-center justify-center mb-5">
-        <Text className="text-3xl font-extrabold text-slate-800">
-          Nói & Học
-        </Text>
-        <Image
-          source={require("../../../../assets/LogoConversation.png")}
-          className="w-14 h-14 rounded-full ml-3"
-          resizeMode="contain"
-        />
+      <View className="items-center mb-5">
+        <View className="w-full justify-center items-center">
+          <Text className="text-3xl font-extrabold text-slate-800">
+            Speak & Learn
+          </Text>
+
+          <Image
+            source={require("../../../../assets/LogoConversation.png")}
+            className="w-14 h-14 rounded-full absolute right-0"
+            resizeMode="contain"
+          />
+        </View>
       </View>
 
       <Text className="text-center text-slate-500 font-medium mb-6">
-        Nói tiếng Việt và cùng nhau luyện tập Tiếng Anh
+        Speak Vietnamese and practice English together
       </Text>
 
       <View className="bg-white p-8 rounded-[30px] items-center mb-6 shadow-sm border border-slate-50">
         <Text className="text-2xl font-bold text-slate-700 mb-6">
-          Ghi âm giọng nói
+          Voice Recording
         </Text>
         <TouchableOpacity
           className={`w-24 h-24 rounded-full justify-center items-center shadow-lg ${isRecording ? "bg-red-500 shadow-red-200" : "bg-amber-400 shadow-amber-200"}`}
@@ -115,9 +115,7 @@ export default function RecordingScreen() {
           />
         </TouchableOpacity>
         <Text className="mt-5 text-slate-400 text-center text-sm leading-5 px-4">
-          {isRecording
-            ? "Đang lắng nghe bé..."
-            : "Nhấn nút để bắt đầu dịch nhé!"}
+          {isRecording ? "Listening..." : "Tap the button to start!"}
         </Text>
       </View>
 
@@ -125,17 +123,17 @@ export default function RecordingScreen() {
         <View className="my-6 items-center">
           <ActivityIndicator size="large" color="#FFB800" />
           <Text className="mt-3 text-amber-500 font-bold">
-            AI đang chuẩn bị bài học...
+            AI is preparing your lesson...
           </Text>
         </View>
       )}
 
       {aiData && (
         <View className="mb-10">
-          <ResultCard label="Bé đã nói:" content={aiData.input_text} />
+          <ResultCard label="You said:" content={aiData.input_text} />
 
           <ResultCard
-            label="Tiếng Anh nói là:"
+            label="In English:"
             content={aiData.english}
             sub={aiData.phonetic}
             isAI
@@ -147,7 +145,7 @@ export default function RecordingScreen() {
             aiData.suggestions.length > 0 && (
               <View className="mt-6">
                 <Text className="text-xl font-bold mb-4 text-slate-800">
-                  Các cách nói khác (Nhấn để nghe)
+                  Other ways to say it (Tap to listen)
                 </Text>
 
                 {aiData.suggestions.map(
@@ -159,7 +157,7 @@ export default function RecordingScreen() {
                     >
                       <View className="flex-row justify-between items-start mb-1">
                         <View className="flex-1">
-                          <Text>Tiếng Anh</Text>
+                          <Text>English</Text>
                           <Text className="text-lg font-bold text-indigo-600">
                             {item.english}
                           </Text>
@@ -177,7 +175,7 @@ export default function RecordingScreen() {
                       </View>
 
                       <View className="mt-2 pt-2 border-t border-slate-50">
-                        <Text>Bản dịch</Text>
+                        <Text>Translation</Text>
                         <Text className="text-slate-600 text-lg font-bold mt-1 ">
                           {item.vietnamese}
                         </Text>

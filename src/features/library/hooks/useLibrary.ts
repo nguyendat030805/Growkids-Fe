@@ -32,6 +32,7 @@ export const useLibrary = () => {
       const res = await LibraryService.getSentencesByTopic(topicId);
       const sentencesData = res?.data || res || [];
       setSentences(sentencesData);
+      console.log("Fetched sentences:", sentencesData);
     } catch (err: any) {
       setError(err?.message || "Failed to fetch sentences");
       setSentences([]);

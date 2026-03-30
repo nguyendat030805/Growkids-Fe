@@ -236,8 +236,8 @@ export default function LibraryScreen() {
         contentContainerStyle={{ paddingBottom: 20 }}
       >
         <View className="items-center pt-4 pb-2 px-4">
-          <View className="flex-row items-center justify-center">
-            <View className="items-center flex-1">
+          <View className="w-full justify-center items-center">
+            <View className="items-center">
               <Text className="text-2xl font-bold text-[#1C2B6D]">
                 Sentence Library
               </Text>
@@ -245,9 +245,10 @@ export default function LibraryScreen() {
                 Daily English Communication
               </Text>
             </View>
+
             <Image
               source={LIBRARY_ICON}
-              className="w-14 h-14 rounded-xl"
+              className="w-14 h-14 rounded-xl absolute right-0"
               resizeMode="contain"
             />
           </View>
